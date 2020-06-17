@@ -14,5 +14,8 @@ using namespace std;
 
 
 int main(int argc, const char * argv[]) {
+    if (argc < 2) {
+        cout << "usage: must include file to parse" << endl;
+    }
     processPopulationFile(argv[1]);
 }
