@@ -5,7 +5,7 @@
 
 using namespace std;
 
-int main(int argc, const char* argv[]) {
+int mymain(int argc, const char* argv[]) {
     if (argc < 2) {
         cout << "usage: must include file to parse" << endl;
     }
