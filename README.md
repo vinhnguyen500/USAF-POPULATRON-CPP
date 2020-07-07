@@ -1,5 +1,9 @@
 # Populatron-C++
 
+**Visual Studio Notes:**
+- The VS2019 project files are in the populatron-vscode folder.
+- You may need to switch Visual Studio from `debug` mode to `release` mode to run faster tests.
+
 ## Objectives
 
 - Practice outside-in testing with TDD
