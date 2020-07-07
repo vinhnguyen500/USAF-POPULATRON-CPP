@@ -20,7 +20,7 @@ This exercise gives students an isolated practice problem to hone their skills.
 
 In this repository you will find a csv file containing information on the cities in the world.
 
-You will also find a gradle project with a single entry point and a single integration test.
+You will also find a test file with a single entry point and a single integration test.
 
 The test follows the out-side in paradigm, and the current state is green.
 
@@ -48,16 +48,11 @@ Below are some questions you can ask yourself to determine if your code is TDD c
 
 Remember these questions, because they apply to all code, not just the code you have written in for this exercise.
 
-## Stretch
-
-1. Write a pure unit test for your file IO module.
-2. Refactor all your tests to use behavior based testing and mock all dependencies.
-3. Re-wire your app and tests to use Google Guice to inject dependencies. (Follow their [getting started](https://github.com/google/guice/wiki/GettingStarted) guide for help)
 
 ## Final note
 
 The focus of this exercise is on unit tests and mocking because these are often where developers go wrong. However if you only have unit tests, you face other problems:
 
-![unit vs integration](./img/giphy.gif)
+![unittest](https://user-images.githubusercontent.com/40476562/86525945-76e41700-be42-11ea-8f2f-e43ae162d498.gif)
 
 Make sure you don't fall into the [mockist](https://agilewarrior.wordpress.com/2015/04/18/classical-vs-mockist-testing/) trap and skip your integration testing.
