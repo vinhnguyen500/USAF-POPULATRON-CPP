@@ -7,9 +7,10 @@
 //
 
 #include <stdio.h>
-#include "processPop.h"
 #include <iostream>
-
+#include <string> 
+#include "ioParser.h"
+#include "population.h"
 using namespace std;
 
 
@@ -17,5 +18,11 @@ int main(int argc, const char * argv[]) {
     if (argc < 2) {
         cout << "usage: must include file to parse" << endl;
     }
-    processPopulationFile(argv[1]);
+    string filePath = argv[1];
+    IOParser parser;
+    parser.parseFile(filePath);
+
+    Population pop;
+    pop.parsePopulationFromRawData(parser.getLines());
+    cout << pop.getFormattedWorldPopulationString() << endl;
 }

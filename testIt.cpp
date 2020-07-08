@@ -17,25 +17,80 @@
 #include <gmock/gmock.h>
 #include <gtest/gtest.h>
 
-#include "processPop.h" 
+#include "ioParser.h"
+#include "population.h"
 
 using namespace std;
 
-TEST(processPopulation, outputTest) {
+
+TEST(ioTest, sampleDataFile) {
     //setup
-    string expected = "World population is: 1,347,982,728.\n";
+    int expected = 34;
+    string input = "./data/test.csv";
     
+    IOParser parser;
+    parser.parseFile(input);
+    EXPECT_EQ(parser.getLineCount(), expected);
+}
+
+TEST(ioTest, actualDataFile) {
+    //setup
+    int expected = 1586978;
+    string input = "./data/worldcitiespop.csv";
     
-    //redirect standard out
-    ostringstream strCout;
-    streambuf* oldCout = cout.rdbuf( strCout.rdbuf());
+    IOParser parser;
+    parser.parseFile(input);
+    EXPECT_EQ(parser.getLineCount(), expected);
+}
 
-    processPopulationFile("./data/worldcitiespop.csv");
+TEST(processPopulation,addSubPopulation){
 
-    string actual = strCout.str();
+  //setup
+  int input = 5;
+  int expected = 5;
+
+  Population testPop;
+
+  testPop.addPopulation(input);
+
+  EXPECT_EQ(testPop.getTotalPop(),expected); 
+}
+
+TEST(processPopulation, getTotalPopulation){
+  int expected = 10;
+  int input = 10;
+  Population testPop;
+  testPop.addPopulation(input);
+
+  EXPECT_EQ(testPop.getTotalPop(),expected);
+}
+
+TEST(processPopulation, addTestPopulation) {
+    //setup
+    string expected = "World Population is: 34946.\n";
+    string input = "./data/test.csv";
+    
+    IOParser parser;
+    parser.parseFile(input);
+
+    Population pop;
+    pop.parsePopulationFromRawData(parser.getLines());
+    string actual = pop.getFormattedWorldPopulationString();
     EXPECT_EQ(actual, expected);
+}
 
-    cout.rdbuf(oldCout);
+TEST(processPopulation, addActualPopulation) {
+    //setup
+    string expected = "World Population is: 1347982728.\n";
+    string input = "./data/worldcitiespop.csv";
+    
+    IOParser parser;
+    parser.parseFile(input);
+
+    Population pop;
+    pop.parsePopulationFromRawData(parser.getLines());
+    string actual = pop.getFormattedWorldPopulationString();
+    EXPECT_EQ(actual, expected);
 }
 
 int main(int argc, char **argv) {
